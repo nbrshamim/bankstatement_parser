@@ -1,0 +1,7 @@
+Local supervised layout matcher using character n-gram TF-IDF and nearest-neighbor similarity.
+
+How to train it: Upload a statement, correct its fields and transactions, select the source PDF line for each field and transaction, then confirm local storage and save. You can add missing rows or remove incorrect ones. For sufficiently similar future layouts, the model applies the reviewed field positions and transaction-column geometry; weak matches fall back to the existing parser. Check the suggestions before relying on them.
+
+The model is a lightweight, local supervised layout matcher, not a large neural network. Reviewed data is stored unencrypted at %LOCALAPPDATA%\BankStatementParser\layout_training.sqlite3; the original PDFs are not saved. The app also reports accuracy against submitted corrections, but those figures are not from an independent test set.
+
+Verified: Both app copies completed upload/review/save tests. A synthetic example confirmed the learned layout could recover a transaction the baseline missed, and that removing a false row teaches an exclusion for a matching layout.
